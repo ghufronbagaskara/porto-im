@@ -1,7 +1,7 @@
+"use client";
 import { useRevealChildren } from "@/hooks/useRevealChildren";
 import SectionLabel from "../ui/SectionLabel";
 import { CREDENTIALS } from "@/lib/data";
-("use client");
 
 export default function AboutSection() {
   const sectionRef = useRevealChildren<HTMLElement>();
