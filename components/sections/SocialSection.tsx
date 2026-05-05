@@ -1,13 +1,16 @@
 "use client";
-
-import { useRevealChildren } from "@/hooks/useRevealChildren";
 import { useState } from "react";
-import SectionLabel from "../ui/SectionLabel";
-import { SOCIAL_POSTS, SOCIAL_TABS } from "@/lib/data";
+import Image from "next/image";
+import SectionLabel from "@/components/ui/SectionLabel";
+import { useRevealChildren } from "@/hooks/useRevealChildren";
+import { SOCIAL_PLATFORMS } from "@/lib/data";
+import type { Platform } from "@/lib/types";
 
 export default function SocialSection() {
-  const [activeTab, setActiveTab] = useState<string>("Instagram");
+  const [active, setActive] = useState<Platform>("instagram");
   const sectionRef = useRevealChildren<HTMLElement>();
+
+  const current = SOCIAL_PLATFORMS.find((p) => p.key === active)!;
 
   return (
     <section
@@ -27,41 +30,50 @@ export default function SocialSection() {
         <span className="text-outline-black">Platforms.</span>
       </h2>
 
-      {/* {Tabs} */}
+      {/* Tabs */}
       <div className="fade-up delay-2 flex border-b border-brand-border mt-10 mb-12">
-        {SOCIAL_TABS.map((tab) => (
+        {SOCIAL_PLATFORMS.map((platform) => (
           <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
+            key={platform.key}
+            onClick={() => setActive(platform.key)}
             className={`px-7 py-[14px] font-condensed font-bold text-[14px] tracking-[0.12em] uppercase cursor-pointer border-b-[3px] -mb-px transition-colors duration-200 ${
-              activeTab === tab
+              active === platform.key
                 ? "text-brand-blue border-brand-blue"
                 : "text-brand-muted border-transparent hover:text-brand-black"
             }`}
           >
-            {tab}
+            {platform.label}
           </button>
         ))}
       </div>
 
-      {/* {Posts grid} */}
+      {/* Posts grid */}
       <div className="fade-up grid grid-cols-2 md:grid-cols-4 gap-[2px] bg-brand-border">
-        {SOCIAL_POSTS.map((post, i) => (
-          <div
-            key={i}
-            data-cursor-hover
-            className="group relative aspect-square overflow-hidden cursor-pointer"
-            style={{ background: post.bg }}
+        {current.posts.map((post) => (
+          <a
+            key={post.id}
+            href={post.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative aspect-square overflow-hidden block bg-brand-gray"
+            aria-label={post.caption}
           >
-            <span className="absolute top-3 right-3 bg-brand-black text-white font-condensed font-bold text-[10px] tracking-[0.1em] uppercase px-[10px] py-1 z-10">
-              @isaac.munandar
-            </span>
-            <div className="absolute inset-0 bg-brand-blue/0 group-hover:bg-brand-blue/[0.88] flex flex-col justify-end p-5 transition-colors duration-300">
-              <p className="font-condensed font-bold text-[16px] uppercase text-white leading-[1.3] opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                {post.text}
+            <Image
+              src={post.photo}
+              alt={post.caption}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 50vw, 25vw"
+            />
+            <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/60 transition-all duration-300 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100">
+              <span className="text-[11px] text-brand-blue font-medium tracking-widest uppercase">
+                {post.handle}
+              </span>
+              <p className="text-white text-[13px] font-light leading-snug mt-1 line-clamp-3">
+                {post.caption}
               </p>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </section>
