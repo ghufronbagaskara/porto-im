@@ -7,7 +7,7 @@ import { headers } from "next/headers";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const ISAAC_EMAIL = "isaac.munandar@gmail.com";
-const FROM_DOMAIN = "noreply@yourdomain.com";
+const FROM_DOMAIN = "noreply@isaacmunandar.com";
 const SITE_NAME = "Isaac Munandar";
 
 export type ContactState = {
