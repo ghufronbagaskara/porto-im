@@ -1,8 +1,8 @@
 "use client";
-
 import { useEffect } from "react";
-import Button from "../ui/Button";
+import Button from "@/components/ui/Button";
 import { HERO_STATS } from "@/lib/data";
+import Image from "next/image";
 
 export default function HeroSection() {
   useEffect(() => {
@@ -22,15 +22,15 @@ export default function HeroSection() {
       id="home"
       className="pt-[68px] min-h-screen grid grid-cols-1 lg:grid-cols-2 overflow-hidden"
     >
-      {/* {Left panel} */}
+      {/* Left panel */}
       <div className="px-5 md:px-10 lg:px-20 py-[100px] flex flex-col justify-center bg-white relative z-[2]">
-        {/* {Tag} */}
+        {/* Tag */}
         <div className="fade-up inline-flex items-center gap-[10px] text-[11px] font-medium tracking-[0.2em] uppercase text-brand-blue mb-10">
           <span className="w-[6px] h-[6px] rounded-full bg-brand-blue flex-shrink-0" />
           AI Expert &amp; Serial Entrepreneur
         </div>
 
-        {/* {Headline} */}
+        {/* Headline */}
         <h1 className="fade-up delay-1 font-condensed font-black text-hero leading-[0.9] tracking-[-1px] uppercase text-brand-black mb-12">
           Building
           <br />
@@ -39,13 +39,13 @@ export default function HeroSection() {
           <span className="text-outline-black">Generation.</span>
         </h1>
 
-        {/* {Subtext} */}
+        {/* Subtext */}
         <p className="fade-up delay-2 text-[17px] font-light text-brand-muted leading-[1.7] max-w-[400px] mb-14">
-          I help enterprises and implement AI for real growth — and train the
-          next generation of leaders to lead it.
+          I help enterprises implement AI for real growth — and train the next
+          generation of leaders to lead it.
         </p>
 
-        {/* {CTAs} */}
+        {/* CTAs */}
         <div className="fade-up delay-3 flex gap-4 items-center flex-wrap">
           <Button href="#services" variant="solid">
             Explore Services
@@ -56,16 +56,20 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* {Right panel} */}
+      {/* Right panel */}
       <div className="relative overflow-hidden bg-brand-gray min-h-[500px] lg:min-h-0">
-        {/* {Photo placeholder} */}
-        <div className="w-full h-full bg-gradient-to-br from-[#D8D8D8] to-[#B8B8B8] flex items-center justify-center">
-          <span className="font-condensed text-[11px] tracking-[0.2em] uppercase text-black/20">
-            Place your photo here
-          </span>
+        {/* Photo placeholder */}
+        <div className="w-full h-full">
+          <Image
+            src="/isaac-1.jpeg"
+            alt="Isaac Munandar"
+            fill
+            style={{ objectFit: "cover" }}
+            priority
+          />
         </div>
 
-        {/* {Stats bar} */}
+        {/* Stats bar */}
         <div className="absolute bottom-0 left-0 right-0 bg-brand-blue grid grid-cols-3">
           {HERO_STATS.map((stat, i) => (
             <div
