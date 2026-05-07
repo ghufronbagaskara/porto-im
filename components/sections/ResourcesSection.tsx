@@ -16,7 +16,7 @@ export default function ResourcesSection() {
       <section
         ref={sectionRef}
         id="resources"
-        className="bg-brand-yellow px-5 md:px-10 lg:px-20 py-[120px]"
+        className="bg-brand-yellow px-5 md:px-10 lg:px-20 py-[80px] md:py-[120px]"
       >
         <div className="fade-up">
           <SectionLabel className="text-black/55">Free Resources</SectionLabel>
@@ -35,7 +35,7 @@ export default function ResourcesSection() {
             <div
               key={resource.id}
               data-cursor-hover
-              className={`group bg-brand-yellow hover:bg-brand-black px-11 py-[52px] relative cursor-pointer transition-colors duration-300 fade-up ${
+              className={`group bg-brand-yellow hover:bg-brand-black px-6 py-10 md:px-11 md:py-[52px] relative cursor-pointer transition-colors duration-300 fade-up ${
                 i === 1 ? "delay-1" : i === 2 ? "delay-2" : ""
               }`}
             >
