@@ -34,8 +34,10 @@ export default function AboutSection() {
                 src="/isaac-2.jpeg"
                 alt="Isaac Munandar"
                 fill
-                style={{ objectFit: "cover" }}
                 priority
+                quality={80}
+                sizes="(max-width:1024px) 100vw, 50vw"
+                className="object-cover"
               />
             </div>
           </div>
